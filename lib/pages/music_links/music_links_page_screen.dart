@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncrosong/music_links/music_links_page_bloc.dart';
-import 'package:syncrosong/music_links/widgets/music_links_webview.dart';
-import 'package:syncrosong/music_links/widgets/search_song_text_field.dart';
+import 'package:go_router/go_router.dart';
+import 'package:syncrosong/colors.dart';
+import 'package:syncrosong/pages/music_links/music_links_page_bloc.dart';
+import 'package:syncrosong/pages/music_links/widgets/music_links_webview.dart';
+import 'package:syncrosong/pages/music_links/widgets/search_song_text_field.dart';
+import 'package:syncrosong/router/router.dart';
 import 'package:syncrosong/utility/widgets/floating_share_button.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -70,7 +73,46 @@ class MusicPlatformsPageScreen extends StatelessWidget {
             backgroundColor: Colors.white,
             primary: false,
             floatingActionButton: floatingButton,
-            body: viewWidget,
+            body: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: IconButton(
+                    iconSize: 25,
+                    padding: EdgeInsets.zero,
+                    constraints: const BoxConstraints(),
+                    style: const ButtonStyle(
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
+                    ),
+                    onPressed: () {},
+                    icon: Padding(
+                        padding: EdgeInsets.only(
+                          top: MediaQuery.of(context).viewPadding.top + 16,
+                          right: 16,
+                          left: 16,
+                          bottom: 16,
+                        ),
+                        child: const Icon(Icons.settings)),
+                    color: AppColors.mainColor,
+                  ),
+                ),
+                ActionButton(
+                  Icons.settings,
+                  () {
+                    context.go(AppScreens.settings);
+                  },
+                  Alignment.topRight,
+                ),
+                ActionButton(
+                  Icons.history,
+                  () {
+                    context.go(AppScreens.history);
+                  },
+                  Alignment.topLeft,
+                ),
+                viewWidget,
+              ],
+            ),
           ),
         );
       },
@@ -79,6 +121,7 @@ class MusicPlatformsPageScreen extends StatelessWidget {
 
   void _onSearchSubmitted(BuildContext context) {
     BlocProvider.of<MusicPlatformsPageBloc>(context).add(ShareLinkUrl(textEditingController.text));
+    textEditingController.text = "";
   }
 }
 
@@ -135,5 +178,38 @@ class _SearchSongWidgetState extends State<_SearchSongWidget> {
         widget._textEditingController.removeListener(_observeTextFieldChanges);
       });
     }
+  }
+}
+
+class ActionButton extends StatelessWidget {
+  final IconData _icon;
+  final Alignment _alignment;
+  final void Function() _onPressed;
+
+  const ActionButton(this._icon, this._onPressed, this._alignment, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: _alignment,
+      child: IconButton(
+        iconSize: 25,
+        padding: EdgeInsets.zero,
+        constraints: const BoxConstraints(),
+        style: const ButtonStyle(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
+        ),
+        onPressed: _onPressed,
+        icon: Padding(
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).viewPadding.top + 16,
+              right: 16,
+              left: 16,
+              bottom: 16,
+            ),
+            child: Icon(_icon)),
+        color: AppColors.mainColor,
+      ),
+    );
   }
 }

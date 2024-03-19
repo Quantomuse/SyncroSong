@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncrosong/api.dart';
 import 'package:syncrosong/colors.dart';
-import 'package:syncrosong/music_links/music_links_page_bloc.dart';
-import 'package:syncrosong/music_links/music_links_page_screen.dart';
+import 'package:syncrosong/pages/music_links/music_links_page_bloc.dart';
+import 'package:syncrosong/router/router.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,9 +19,9 @@ void main() {
         create: (BuildContext context) => MusicPlatformsPageBloc(Api()),
       )
     ],
-    child: MaterialApp(
-      home: MusicPlatformsPageScreen(),
-      //debugShowCheckedModeBanner: false,
+    child: MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: AppRouter().get(),
     ),
   ));
 }

@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:syncrosong/colors.dart';
 
-class ClipboardPastButton extends StatefulWidget {
+class ClipboardPasteButton extends StatefulWidget {
   final void Function(String clipboardText) onClipboardTextFound;
   final void Function() onNoClipboardTextFound;
 
-  const ClipboardPastButton(this.onClipboardTextFound, this.onNoClipboardTextFound, {super.key});
+  const ClipboardPasteButton(this.onClipboardTextFound, this.onNoClipboardTextFound, {super.key});
 
   @override
-  State<ClipboardPastButton> createState() => _ClipboardPastButtonState();
+  State<ClipboardPasteButton> createState() => _ClipboardPasteButtonState();
 }
 
-class _ClipboardPastButtonState extends State<ClipboardPastButton> {
+class _ClipboardPasteButtonState extends State<ClipboardPasteButton> {
   bool _isLoading = false;
 
   @override

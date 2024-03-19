@@ -52,7 +52,7 @@ class MusicPlatformsPageBloc extends Bloc<MusicLinksScreenEvent, MusicPlatformsP
         } else {
           emit(MusicPlatformsPageState.error());
         }
-      } else if (event is BackNavigationEvent){
+      } else if (event is BackNavigationEvent) {
         emit(MusicPlatformsPageState.initialState());
       }
     });
