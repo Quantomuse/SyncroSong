@@ -3,8 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncrosong/api.dart';
 import 'package:syncrosong/colors.dart';
-import 'package:syncrosong/pages/music_links/music_links_page_bloc.dart';
 import 'package:syncrosong/router/router.dart';
+
+import 'pages/song_search/search_song_bloc.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,15 +14,17 @@ void main() {
     statusBarBrightness: Brightness.light,
   ));
 
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider<MusicPlatformsPageBloc>(
-        create: (BuildContext context) => MusicPlatformsPageBloc(Api()),
-      )
-    ],
-    child: MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      routerConfig: AppRouter().get(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<SearchSongBloc>(
+          create: (BuildContext context) => SearchSongBloc(Api()),
+        )
+      ],
+      child: MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: AppRouteTreeHolder().get(),
+      ),
     ),
-  ));
+  );
 }
