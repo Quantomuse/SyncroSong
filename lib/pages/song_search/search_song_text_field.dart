@@ -59,7 +59,7 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
           focusNode: FocusNode(),
           maxLines: 8,
           minLines: 1,
-          style: textStyle,
+          style: doesHaveError == true ? errorTextStyle : textStyle,
           cursorColor: AppColors.mainColor,
           enableInteractiveSelection: true,
         ),
@@ -67,7 +67,7 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipboardPastButton(
+            ClipboardPasteButton(
               (text) => _onClipboardDataPasted(context, text),
               _onNoClipboardDataFound,
             ),
