@@ -1,5 +1,6 @@
 import 'package:syncrosong/data/api/song_api_model.dart';
-import 'package:syncrosong/data/database/song_search/song_db_model.dart';
+
+import '../../database/songs/song_db_model.dart';
 
 class SongItem {
   final DateTime searchTime;

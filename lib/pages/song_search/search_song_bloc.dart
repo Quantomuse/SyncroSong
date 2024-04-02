@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncrosong/data/repos/song.dart';
-import 'package:syncrosong/data/repos/song_search_repository.dart';
+import 'package:syncrosong/data/repos/songs/song.dart';
+import 'package:syncrosong/data/repos/songs/songs_repository.dart';
 import 'package:syncrosong/router/router.dart';
 
 enum SearchQueryState { loading, resetToInitial, initial, error }

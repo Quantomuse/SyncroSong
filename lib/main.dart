@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncrosong/colors.dart';
 import 'package:syncrosong/data/api/api.dart';
 import 'package:syncrosong/data/database/database.dart';
-import 'package:syncrosong/data/database/song_search/song_search_db.dart';
-import 'package:syncrosong/data/repos/song_search_repository.dart';
+import 'package:syncrosong/data/repos/songs/songs_repository.dart';
 import 'package:syncrosong/router/router.dart';
 
+import 'data/database/songs/song_search_db.dart';
 import 'pages/song_search/search_song_bloc.dart';
 
 void main() async {

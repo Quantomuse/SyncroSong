@@ -1,6 +1,7 @@
 import 'package:syncrosong/data/database/database.dart';
-import 'package:syncrosong/data/database/song_search/song_db_model.dart';
 import 'package:syncrosong/objectbox.g.dart';
+
+import 'song_db_model.dart';
 
 class SongSearchDatabase {
   final Database _database;

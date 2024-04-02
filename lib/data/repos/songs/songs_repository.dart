@@ -1,8 +1,9 @@
 import 'package:syncrosong/data/api/api.dart';
 import 'package:syncrosong/data/api/song_api_model.dart';
-import 'package:syncrosong/data/database/song_search/song_search_db.dart';
-import 'package:syncrosong/data/database/song_search/song_db_model.dart';
-import 'package:syncrosong/data/repos/song.dart';
+import 'package:syncrosong/data/repos/songs/song.dart';
+
+import '../../database/songs/song_db_model.dart';
+import '../../database/songs/song_search_db.dart';
 
 class SongSearchRepository with SongConverter {
   final SongSearchDatabase songSearchDatabase;
