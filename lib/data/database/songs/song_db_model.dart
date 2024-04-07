@@ -1,7 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class SongDBModel {
+class SongItemDBModel {
   @Id()
   int id = 0;
 
@@ -12,9 +12,26 @@ class SongDBModel {
 
   String? displayUrl;
 
-  String? name;
+  String? title;
 
-  SongDBModel(this.searchTime, this.searchUrl, this.displayUrl, this.name);
+  String? artist;
 
-  bool hasNoMissingValues() => searchTime != null && searchUrl != null && name != null && displayUrl != null;
+  String? musicPlatformUrlsJson;
+
+  SongItemDBModel(
+    this.searchTime,
+    this.searchUrl,
+    this.displayUrl,
+    this.title,
+    this.artist,
+    this.musicPlatformUrlsJson,
+  );
+
+  bool hasNoMissingValues() =>
+      searchTime != null &&
+      searchUrl != null &&
+      title != null &&
+      displayUrl != null &&
+      artist != null &&
+      musicPlatformUrlsJson != null;
 }

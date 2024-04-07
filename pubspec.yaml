@@ -32,6 +32,7 @@ dependencies:
 
   objectbox: ^2.5.1
   objectbox_flutter_libs: any
+  logging: ^1.2.0
 
 dev_dependencies:
   flutter_test:

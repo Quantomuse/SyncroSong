@@ -10,11 +10,9 @@ class SongSearchApi {
 
   Future<SongApiModel> searchSongUrl(String url) async {
     DateTime searchTime = DateTime.now();
-    var response = await http.get(Uri.parse("$_songRequestUrl$url"));
-    var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-    // requestPageUrlForX(decodedResponse["pageUrl"]);
-    String displayUrl = decodedResponse["pageUrl"];
-    return SongApiModel(searchTime, url, displayUrl, "TBD");
+    var rawResponse = await http.get(Uri.parse("$_songRequestUrl$url"));
+    final Map<String, dynamic> decodedResponse = jsonDecode(utf8.decode(rawResponse.bodyBytes)) as Map<String, dynamic>;
+    return SongApiModel.fromJson(decodedResponse, searchTime, url);
   }
 
   Future<bool> isUrlValid(String url) async {

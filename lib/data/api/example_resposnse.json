@@ -1,0 +1,266 @@
+{
+  "entityUniqueId": "SPOTIFY_SONG::0SRqIW98aSU2w3pAdKUMGB",
+  "userCountry": "US",
+  "pageUrl": "https://song.link/s/0SRqIW98aSU2w3pAdKUMGB",
+  "entitiesByUniqueId": {
+    "AMAZON_SONG::B0011Z507Q": {
+      "id": "B0011Z507Q",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://m.media-amazon.com/images/I/51B7aTU-IjL.jpg",
+      "thumbnailWidth": 500,
+      "thumbnailHeight": 500,
+      "apiProvider": "amazon",
+      "platforms": [
+        "amazonMusic",
+        "amazonStore"
+      ]
+    },
+    "AUDIOMACK_SONG::26261655": {
+      "id": "26261655",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://assets.audiomack.com/nickelback/1bf71ccf53f55125186c466a8e9a331f6e5307c04377ce7b4ac296027ffc80e9.jpeg?width=500&height=500&max=true",
+      "thumbnailWidth": 500,
+      "thumbnailHeight": 500,
+      "apiProvider": "audiomack",
+      "platforms": [
+        "audiomack"
+      ]
+    },
+    "ANGHAMI_SONG::86804367": {
+      "id": "86804367",
+      "type": "song",
+      "title": "If Everyone Cared (2020 Remaster)",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://artwork.anghcdn.co/cover/130992186/320",
+      "thumbnailWidth": 1024,
+      "thumbnailHeight": 1024,
+      "apiProvider": "anghami",
+      "platforms": [
+        "anghami"
+      ]
+    },
+    "BOOMPLAY_SONG::3825088": {
+      "id": "3825088",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://source.boomplaymusic.com/group10/M00/02/10/057fdda21e5844c399700055a26bb725_464_464.jpg",
+      "thumbnailWidth": 464,
+      "thumbnailHeight": 464,
+      "apiProvider": "boomplay",
+      "platforms": [
+        "boomplay"
+      ]
+    },
+    "DEEZER_SONG::71828735": {
+      "id": "71828735",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://cdns-images.dzcdn.net/images/cover/bc844f574c47ba2f0db583115916472f/500x500-000000-80-0-0.jpg",
+      "thumbnailWidth": 500,
+      "thumbnailHeight": 500,
+      "apiProvider": "deezer",
+      "platforms": [
+        "deezer"
+      ]
+    },
+    "ITUNES_SONG::719617256": {
+      "id": "719617256",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/df/5d/6d/df5d6d99-4614-c384-b1a8-d02d43f511e7/016861759209.jpg/512x512bb.jpg",
+      "thumbnailWidth": 512,
+      "thumbnailHeight": 512,
+      "apiProvider": "itunes",
+      "platforms": [
+        "appleMusic",
+        "itunes"
+      ]
+    },
+    "NAPSTER_SONG::tra.15418315": {
+      "id": "tra.15418315",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://direct.rhapsody.com/imageserver/images/alb.15411033/385x385.jpeg",
+      "thumbnailWidth": 385,
+      "thumbnailHeight": 385,
+      "apiProvider": "napster",
+      "platforms": [
+        "napster"
+      ]
+    },
+    "PANDORA_SONG::TR:36325246": {
+      "id": "TR:36325246",
+      "type": "song",
+      "title": "If Everyone Cared (2020 Remaster)",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://content-images.p-cdn.com/images/07/4f/e7/e1/231b437f9bade631fd78b42b/_500W_500H.jpg",
+      "thumbnailWidth": 500,
+      "thumbnailHeight": 500,
+      "apiProvider": "pandora",
+      "platforms": [
+        "pandora"
+      ]
+    },
+    "SOUNDCLOUD_SONG::718227166": {
+      "id": "718227166",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://i1.sndcdn.com/artworks-NrlCgaWHbL7i-0-t500x500.jpg",
+      "thumbnailWidth": 500,
+      "thumbnailHeight": 500,
+      "apiProvider": "soundcloud",
+      "platforms": [
+        "soundcloud"
+      ]
+    },
+    "SPOTIFY_SONG::0SRqIW98aSU2w3pAdKUMGB": {
+      "id": "0SRqIW98aSU2w3pAdKUMGB",
+      "type": "song",
+      "title": "If Everyone Cared - 2020 Remaster",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://i.scdn.co/image/ab67616d0000b273bad7e941f557e06019b87fd4",
+      "thumbnailWidth": 640,
+      "thumbnailHeight": 640,
+      "apiProvider": "spotify",
+      "platforms": [
+        "spotify"
+      ]
+    },
+    "TIDAL_SONG::23267451": {
+      "id": "23267451",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://resources.tidal.com/images/b51b7fbc/30be/4756/a90e/86a809a7ccf1/640x640.jpg",
+      "thumbnailWidth": 640,
+      "thumbnailHeight": 640,
+      "apiProvider": "tidal",
+      "platforms": [
+        "tidal"
+      ]
+    },
+    "YANDEX_SONG::96223": {
+      "id": "96223",
+      "type": "song",
+      "title": "If Everyone Cared",
+      "artistName": "Nickelback",
+      "thumbnailUrl": "https://avatars.yandex.net/get-music-content/33216/395e65e6.a.37477-1/600x600",
+      "thumbnailWidth": 600,
+      "thumbnailHeight": 600,
+      "apiProvider": "yandex",
+      "platforms": [
+        "yandex"
+      ]
+    },
+    "YOUTUBE_VIDEO::-IUSZyjiYuY": {
+      "id": "-IUSZyjiYuY",
+      "type": "song",
+      "title": "Nickelback - If Everyone Cared [OFFICIAL VIDEO]",
+      "artistName": "Roadrunner Records",
+      "thumbnailUrl": "https://i.ytimg.com/vi/-IUSZyjiYuY/hqdefault.jpg",
+      "thumbnailWidth": 480,
+      "thumbnailHeight": 360,
+      "apiProvider": "youtube",
+      "platforms": [
+        "youtube",
+        "youtubeMusic"
+      ]
+    }
+  },
+  "linksByPlatform": {
+    "amazonMusic": {
+      "country": "US",
+      "url": "https://music.amazon.com/albums/B0011Z10IO?trackAsin=B0011Z507Q",
+      "entityUniqueId": "AMAZON_SONG::B0011Z507Q"
+    },
+    "amazonStore": {
+      "country": "US",
+      "url": "https://amazon.com/dp/B0011Z507Q",
+      "entityUniqueId": "AMAZON_SONG::B0011Z507Q"
+    },
+    "audiomack": {
+      "country": "US",
+      "url": "https://audiomack.com/song/nickelback/if-everyone-cared-1",
+      "entityUniqueId": "AUDIOMACK_SONG::26261655"
+    },
+    "anghami": {
+      "country": "US",
+      "url": "https://play.anghami.com/song/86804367?refer=linktree",
+      "entityUniqueId": "ANGHAMI_SONG::86804367"
+    },
+    "boomplay": {
+      "country": "US",
+      "url": "https://www.boomplay.com/songs/3825088",
+      "entityUniqueId": "BOOMPLAY_SONG::3825088"
+    },
+    "deezer": {
+      "country": "US",
+      "url": "https://www.deezer.com/track/71828735",
+      "entityUniqueId": "DEEZER_SONG::71828735"
+    },
+    "appleMusic": {
+      "country": "US",
+      "url": "https://geo.music.apple.com/us/album/_/719617041?i=719617256&mt=1&app=music&ls=1&at=1000lHKX&ct=api_http&itscg=30200&itsct=odsl_m",
+      "nativeAppUriMobile": "music://itunes.apple.com/us/album/_/719617041?i=719617256&mt=1&app=music&ls=1&at=1000lHKX&ct=api_uri_m&itscg=30200&itsct=odsl_m",
+      "nativeAppUriDesktop": "itmss://itunes.apple.com/us/album/_/719617041?i=719617256&mt=1&app=music&ls=1&at=1000lHKX&ct=api_uri_d&itscg=30200&itsct=odsl_m",
+      "entityUniqueId": "ITUNES_SONG::719617256"
+    },
+    "itunes": {
+      "country": "US",
+      "url": "https://geo.music.apple.com/us/album/_/719617041?i=719617256&mt=1&app=itunes&ls=1&at=1000lHKX&ct=api_http&itscg=30200&itsct=odsl_m",
+      "nativeAppUriMobile": "itmss://itunes.apple.com/us/album/_/719617041?i=719617256&mt=1&app=itunes&ls=1&at=1000lHKX&ct=api_uri_m&itscg=30200&itsct=odsl_m",
+      "nativeAppUriDesktop": "itmss://itunes.apple.com/us/album/_/719617041?i=719617256&mt=1&app=itunes&ls=1&at=1000lHKX&ct=api_uri_d&itscg=30200&itsct=odsl_m",
+      "entityUniqueId": "ITUNES_SONG::719617256"
+    },
+    "napster": {
+      "country": "US",
+      "url": "https://play.napster.com/track/tra.15418315",
+      "entityUniqueId": "NAPSTER_SONG::tra.15418315"
+    },
+    "pandora": {
+      "country": "US",
+      "url": "https://www.pandora.com/TR:36325246",
+      "entityUniqueId": "PANDORA_SONG::TR:36325246"
+    },
+    "soundcloud": {
+      "country": "US",
+      "url": "https://soundcloud.com/nickelback/if-everyone-cared-1",
+      "entityUniqueId": "SOUNDCLOUD_SONG::718227166"
+    },
+    "tidal": {
+      "country": "US",
+      "url": "https://listen.tidal.com/track/23267451",
+      "entityUniqueId": "TIDAL_SONG::23267451"
+    },
+    "yandex": {
+      "country": "RU",
+      "url": "https://music.yandex.ru/track/96223",
+      "entityUniqueId": "YANDEX_SONG::96223"
+    },
+    "youtube": {
+      "country": "US",
+      "url": "https://www.youtube.com/watch?v=-IUSZyjiYuY",
+      "entityUniqueId": "YOUTUBE_VIDEO::-IUSZyjiYuY"
+    },
+    "youtubeMusic": {
+      "country": "US",
+      "url": "https://music.youtube.com/watch?v=-IUSZyjiYuY",
+      "entityUniqueId": "YOUTUBE_VIDEO::-IUSZyjiYuY"
+    },
+    "spotify": {
+      "country": "US",
+      "url": "https://open.spotify.com/track/0SRqIW98aSU2w3pAdKUMGB",
+      "nativeAppUriDesktop": "spotify:track:0SRqIW98aSU2w3pAdKUMGB",
+      "entityUniqueId": "SPOTIFY_SONG::0SRqIW98aSU2w3pAdKUMGB"
+    }
+  }
+}

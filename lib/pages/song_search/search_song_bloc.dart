@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncrosong/data/repos/songs/song.dart';
+import 'package:syncrosong/data/repos/songs/song_item.dart';
 import 'package:syncrosong/data/repos/songs/songs_repository.dart';
 import 'package:syncrosong/router/router.dart';
 
@@ -27,14 +27,14 @@ class SearchSongState {
 }
 
 class SearchSongBloc extends Bloc<SongSubmitEvent, SearchSongState> {
-  final SongSearchRepository _songSearchRepository;
+  final SongRepository _songRepository;
 
-  SearchSongBloc(this._songSearchRepository) : super(SearchSongState.initialState()) {
+  SearchSongBloc(this._songRepository) : super(SearchSongState.initialState()) {
     on<SongSubmitEvent>((event, emit) async {
       emit(SearchSongState.loading());
       String? pageUrl;
       try {
-        SongItem songItem = await _songSearchRepository.search(event.url);
+        SongItem songItem = await _songRepository.search(event.url);
         pageUrl = songItem.displayUrl;
       } catch (exception) {
         emit(SearchSongState.error());
