@@ -11,7 +11,10 @@ class SongSearchDatabase {
     _store = _database.store.box<SongItemDBModel>();
   }
 
-  Future<List<SongItemDBModel>> getHistory() async => _store.getAllAsync();
+  Future<List<SongItemDBModel>> getHistory() async {
+    Query<SongItemDBModel> query = _store.query().order(SongItemDBModel_.searchTime, flags: Order.descending).build();
+    return query.findAsync();
+  }
 
   Future<void> saveSong(SongItemDBModel songSearchDBModel) async {
     await _store.putAsync(songSearchDBModel, mode: PutMode.put);

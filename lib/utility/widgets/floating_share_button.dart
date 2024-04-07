@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:syncrosong/colors.dart';
+import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/localization/text_keys.dart';
 import 'package:syncrosong/localization/text_manager.dart';
 

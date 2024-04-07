@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:syncrosong/colors.dart';
+import 'package:syncrosong/styling_guide.dart';
 
 class ClipboardPasteButton extends StatefulWidget {
   final void Function(String clipboardText) onClipboardTextFound;
