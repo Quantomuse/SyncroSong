@@ -79,8 +79,6 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
     });
   }
 
-  //document.getElementsByClassName('css-12bjhyh')[0].style.background='${theme.scaffoldBackgroundColor.value}';
-
   void _onProgress(int progressPercent) {
     // TODO: Add a loader to the add view here
     print("Loading web page: $progressPercent");

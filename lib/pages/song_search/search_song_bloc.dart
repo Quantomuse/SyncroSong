@@ -5,11 +5,15 @@ import 'package:syncrosong/router/router.dart';
 
 enum SearchQueryState { loading, resetToInitial, initial, error }
 
-class SongSubmitEvent {
+abstract class _SearchSongEvent {}
+
+class SongSubmitEvent extends _SearchSongEvent {
   final String url;
 
   SongSubmitEvent(this.url);
 }
+
+class ReturnedFromResultScreenEvent extends _SearchSongEvent {}
 
 class SearchSongState {
   final SearchQueryState state;
@@ -26,7 +30,7 @@ class SearchSongState {
   SearchSongState.initialState() : this._(SearchQueryState.initial);
 }
 
-class SearchSongBloc extends Bloc<SongSubmitEvent, SearchSongState> {
+class SearchSongBloc extends Bloc<_SearchSongEvent, SearchSongState> {
   final SongRepository _songRepository;
 
   SearchSongBloc(this._songRepository) : super(SearchSongState.initialState()) {
@@ -48,6 +52,9 @@ class SearchSongBloc extends Bloc<SongSubmitEvent, SearchSongState> {
       } else {
         emit(SearchSongState.error());
       }
+    });
+    on<ReturnedFromResultScreenEvent>((event, emit) async {
+      emit(SearchSongState.initialState());
     });
   }
 }

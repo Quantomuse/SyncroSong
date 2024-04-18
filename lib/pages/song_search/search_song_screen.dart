@@ -21,12 +21,20 @@ class SearchSongScreen extends StatelessWidget {
       listener: (context, state) async {
         if (state.navigationDestinationRoute != null) {
           await context.push(state.navigationDestinationRoute!);
+
+          // ignore: use_build_context_synchronously
+          BlocProvider.of<SearchSongBloc>(context).add(ReturnedFromResultScreenEvent());
         }
       },
       builder: (context, state) {
         Widget viewWidget;
 
         switch (state.state) {
+          case SearchQueryState.resetToInitial:
+            textEditingController.text = "";
+            continue loading;
+
+          loading:
           case SearchQueryState.loading:
             viewWidget = const LoaderWidget();
 
@@ -37,11 +45,6 @@ class SearchSongScreen extends StatelessWidget {
               doesHaveError: true,
             );
 
-          case SearchQueryState.resetToInitial:
-            textEditingController.text = "";
-            continue initial;
-
-          initial:
           case SearchQueryState.initial:
             viewWidget = _SearchSongWidget(
               textEditingController,
@@ -144,8 +147,9 @@ class _ActionButton extends StatelessWidget {
   final AppRoute _navigationDestination;
   final SearchQueryState _state;
   final void Function(String)? onScreenResult;
+  final List<SearchQueryState> _listOfStatesToHideButton = [SearchQueryState.loading, SearchQueryState.resetToInitial];
 
-  const _ActionButton(
+  _ActionButton(
     this._icon,
     this._navigationDestination,
     this._alignment,
@@ -157,7 +161,7 @@ class _ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
-    return _state == SearchQueryState.loading
+    return _listOfStatesToHideButton.contains(_state)
         ? const SizedBox.shrink()
         : Align(
             alignment: _alignment,
