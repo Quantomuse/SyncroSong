@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:syncrosong/colors.dart';
 import 'package:syncrosong/router/router.dart';
+import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 
 import 'search_song_bloc.dart';
@@ -56,36 +56,19 @@ class SearchSongScreen extends StatelessWidget {
           floatingActionButton: floatingButton,
           body: Stack(
             children: [
-              Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  iconSize: 25,
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
-                  style: const ButtonStyle(
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
-                  ),
-                  onPressed: () {},
-                  icon: Padding(
-                      padding: EdgeInsets.only(
-                        top: MediaQuery.of(context).viewPadding.top + 16,
-                        right: 16,
-                        left: 16,
-                        bottom: 16,
-                      ),
-                      child: const Icon(Icons.settings)),
-                  color: AppColors.mainColor,
-                ),
-              ),
-              const ActionButton(
+              _ActionButton(
                 Icons.settings,
                 AppRoute.settings,
                 Alignment.topRight,
+                state.state,
               ),
-              const ActionButton(
+              _ActionButton(
                 Icons.history,
                 AppRoute.history,
                 Alignment.topLeft,
+                state.state,
+                onScreenResult: (songSelected) =>
+                    BlocProvider.of<SearchSongBloc>(context).add(SongSubmitEvent(songSelected)),
               ),
               viewWidget,
             ],
@@ -157,37 +140,53 @@ class _SearchSongWidgetState extends State<_SearchSongWidget> {
   }
 }
 
-class ActionButton extends StatelessWidget {
+class _ActionButton extends StatelessWidget {
   final IconData _icon;
   final Alignment _alignment;
   final AppRoute _navigationDestination;
+  final SearchQueryState _state;
+  final void Function(String)? onScreenResult;
 
-  const ActionButton(this._icon, this._navigationDestination, this._alignment, {super.key});
+  const _ActionButton(
+    this._icon,
+    this._navigationDestination,
+    this._alignment,
+    this._state, {
+    this.onScreenResult,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: _alignment,
-      child: IconButton(
-        iconSize: 25,
-        padding: EdgeInsets.zero,
-        constraints: const BoxConstraints(),
-        style: const ButtonStyle(
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
-        ),
-        onPressed: () {
-          context.push(_navigationDestination.route);
-        },
-        icon: Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).viewPadding.top + 16,
-              right: 16,
-              left: 16,
-              bottom: 16,
+    return _state == SearchQueryState.loading
+        ? const SizedBox.shrink()
+        : Align(
+            alignment: _alignment,
+            child: IconButton(
+              iconSize: 25,
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
+              style: const ButtonStyle(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap, // the '2023' part
+              ),
+              onPressed: () async {
+                if (onScreenResult != null) {
+                  String urlResponse = await context.push(_navigationDestination.route) as String;
+                  onScreenResult!(urlResponse);
+                } else {
+                  context.push(_navigationDestination.route);
+                }
+              },
+              icon: Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).viewPadding.top + 16,
+                    right: 16,
+                    left: 16,
+                    bottom: 16,
+                  ),
+                  child: Icon(_icon)),
+              color: AppColors.mainColor,
             ),
-            child: Icon(_icon)),
-        color: AppColors.mainColor,
-      ),
-    );
+          );
   }
 }

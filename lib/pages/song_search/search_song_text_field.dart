@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:syncrosong/colors.dart';
 import 'package:syncrosong/localization/text_keys.dart';
 import 'package:syncrosong/localization/text_manager.dart';
+import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/clipboard_paste_button.dart';
 
 class SearchSongTextField extends StatelessWidget with TextProvider {
@@ -40,21 +40,20 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
       children: [
         TextField(
           decoration: InputDecoration(
-            hintText: getText(LocalizedText.songSearchHintKey),
-            enabledBorder: borderDecoration,
-            border: borderDecoration,
-            focusedBorder: borderDecoration,
-            errorBorder: errorBorderDecoration,
-            contentPadding: const EdgeInsets.only(
-              left: 16,
-              right: 100,
-              top: 8,
-              bottom: 8,
-            ),
-            hintStyle: textStyle,
-            errorText: doesHaveError == true ? getText(LocalizedText.songSharedUrlInvalidError) : null,
-            errorStyle: errorTextStyle
-          ),
+              hintText: getText(LocalizedText.songSearchHintKey),
+              enabledBorder: borderDecoration,
+              border: borderDecoration,
+              focusedBorder: borderDecoration,
+              errorBorder: errorBorderDecoration,
+              contentPadding: const EdgeInsets.only(
+                left: 16,
+                right: 100,
+                top: 8,
+                bottom: 8,
+              ),
+              hintStyle: textStyle,
+              errorText: doesHaveError == true ? getText(LocalizedText.songSharedUrlInvalidError) : null,
+              errorStyle: errorTextStyle),
           controller: textEditingController,
           focusNode: FocusNode(),
           maxLines: 8,

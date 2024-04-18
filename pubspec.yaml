@@ -3,7 +3,7 @@ description: A way to share songs across different music apps.
 version: 0.0.1
 
 environment:
-  sdk: '>=3.0.1 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
@@ -30,11 +30,18 @@ dependencies:
 
   go_router: ^13.2.1
 
+  objectbox: ^2.5.1
+  objectbox_flutter_libs: any
+  logging: ^1.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+
+  build_runner: ^2.4.8
+  objectbox_generator: any
 
 # The following section is specific to Flutter packages.
 flutter:

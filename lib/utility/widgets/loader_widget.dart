@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:syncrosong/colors.dart';
+import 'package:syncrosong/styling_guide.dart';
 
 class LoaderWidget extends StatelessWidget {
   const LoaderWidget({super.key});

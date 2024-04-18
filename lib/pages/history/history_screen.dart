@@ -1,12 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:syncrosong/data/repos/songs/song_item.dart';
+import 'package:syncrosong/pages/history/history_screen_bloc.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("History")),
+    return Scaffold(
+      body: BlocBuilder<SongHistoryBloc, SongHistoryState>(builder: (context, state) {
+        return ListView.separated(
+          itemBuilder: (_, index) => _SongHistoryRowItemWidget(state.songs[index]),
+          separatorBuilder: (_, __) => Divider(
+            color: Theme.of(context).primaryColor,
+            height: 0,
+          ),
+          addAutomaticKeepAlives: false,
+          cacheExtent: 50,
+          itemCount: state.songs.length,
+        );
+        // return Center(child: Text("History"));
+      }),
     );
   }
+}
+
+class _SongHistoryRowItemWidget extends StatelessWidget {
+  final SongItem songItem;
+
+  const _SongHistoryRowItemWidget(this.songItem, {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        context.pop(songItem.displayUrl);
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    songItem.artist,
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    songItem.title,
+                    style: Theme.of(context).textTheme.displayLarge,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 80,
+              child: Text(
+                textAlign: TextAlign.end,
+                songItem.searchTime.prettyString,
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+extension _PrettyDatePrint on DateTime {
+  String get prettyString => "$hour:$minute\n$day.$month.$year";
 }
