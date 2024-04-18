@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:syncrosong/localization/text_keys.dart';
 import 'package:syncrosong/localization/text_manager.dart';
-import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/clipboard_paste_button.dart';
 
 class SearchSongTextField extends StatelessWidget with TextProvider {
@@ -19,20 +18,21 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     final OutlineInputBorder borderDecoration = OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: const BorderSide(color: AppColors.mainColor, width: 2),
+      borderSide: BorderSide(color: themeData.primaryColor, width: 2),
     );
     final OutlineInputBorder errorBorderDecoration = OutlineInputBorder(
       borderRadius: BorderRadius.circular(16),
-      borderSide: const BorderSide(color: AppColors.errorColor, width: 2),
+      borderSide: BorderSide(color: themeData.colorScheme.error, width: 2),
     );
-    TextStyle textStyle = const TextStyle(
-      color: AppColors.mainColor,
+    TextStyle textStyle = TextStyle(
+      color: themeData.primaryColor,
       fontWeight: FontWeight.bold,
     );
-    TextStyle errorTextStyle = const TextStyle(
-      color: AppColors.errorColor,
+    TextStyle errorTextStyle = TextStyle(
+      color: themeData.colorScheme.error,
       fontWeight: FontWeight.bold,
     );
     return Stack(
@@ -59,7 +59,7 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
           maxLines: 8,
           minLines: 1,
           style: doesHaveError == true ? errorTextStyle : textStyle,
-          cursorColor: AppColors.mainColor,
+          cursorColor: themeData.primaryColor,
           enableInteractiveSelection: true,
         ),
         Row(
@@ -73,7 +73,7 @@ class SearchSongTextField extends StatelessWidget with TextProvider {
             IconButton(
               iconSize: 25,
               onPressed: () => _onSearchPressed(context),
-              color: AppColors.mainColor,
+              color: themeData.primaryColor,
               padding: EdgeInsets.zero,
               icon: const Icon(Icons.search),
             )

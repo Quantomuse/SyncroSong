@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
@@ -15,6 +16,7 @@ class FullMusicLinksScreen extends StatefulWidget {
 
 class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
   bool _isLoading = true;
+  late ThemeData theme;
 
   @override
   void initState() {
@@ -34,10 +36,12 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
 
   @override
   Widget build(BuildContext context) {
+    theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: _isLoading
           ? Container(
-              decoration: const BoxDecoration(color: Colors.white),
+              decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
               constraints: const BoxConstraints.expand(width: double.infinity, height: double.infinity),
               child: const LoaderWidget())
           : SingleChildScrollView(
@@ -55,9 +59,18 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
   }
 
   void _onPageFinishedLoading() {
-    // Deliberately hiding the bottom customization & attribution divs
+    final String backgroundColor = theme.scaffoldBackgroundColor.toHex();
+    final String lightBackgroundColor = theme.colorScheme.background.toHex();
+    //
+    // Deliberately hiding the bottom customization & attribution divs +
+    // theming it to use dark or light theme in conjunction with the app.
     widget.webViewController.runJavaScript("""
         javascript:(function() {
+          document.body.style.background='$backgroundColor'
+          document.getElementsByClassName('css-12bjhyh')[0].style.background='$lightBackgroundColor';
+          document.getElementsByClassName('css-1v5k611')[0].style.background='$lightBackgroundColor';
+          document.getElementsByClassName('css-12bjhyh')[1].style.background='$lightBackgroundColor';
+          document.getElementsByClassName('css-12bjhyh')[2].style.background='$lightBackgroundColor';
           document.getElementsByClassName('css-1lcypyy')[0].style.display='none';
           document.getElementsByClassName('css-d8rran')[0].style.display='none';
         })()""");
@@ -65,6 +78,8 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
       _isLoading = false;
     });
   }
+
+  //document.getElementsByClassName('css-12bjhyh')[0].style.background='${theme.scaffoldBackgroundColor.value}';
 
   void _onProgress(int progressPercent) {
     // TODO: Add a loader to the add view here

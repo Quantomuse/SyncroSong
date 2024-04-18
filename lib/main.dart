@@ -14,8 +14,7 @@ import 'utility/logger.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: AppColors.mainColor,
-    statusBarBrightness: Brightness.light,
+    statusBarColor: AppColors.statusBarColor,
   ));
 
   LogManager.initialize();
@@ -29,10 +28,15 @@ void main() async {
       providers: [
         BlocProvider<SearchSongBloc>(create: (BuildContext context) => SearchSongBloc(songRepository)),
       ],
-      child: MaterialApp.router(
-        theme: AppThemeProvider.create(),
-        debugShowCheckedModeBanner: false,
-        routerConfig: AppRouteTreeHolder(songRepository).get(),
+      child: Builder(
+        builder: (BuildContext buildContext) {
+          bool isDarkMode = buildContext.isDarkMode;
+          return MaterialApp.router(
+            theme: isDarkMode ? AppThemeProvider.createDarkTheme() : AppThemeProvider.createLightTheme(),
+            debugShowCheckedModeBanner: false,
+            routerConfig: AppRouteTreeHolder(songRepository).get(),
+          );
+        },
       ),
     ),
   );

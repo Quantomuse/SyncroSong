@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncrosong/router/router.dart';
-import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 
 import 'search_song_bloc.dart';
@@ -17,15 +16,15 @@ class SearchSongScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return BlocConsumer<SearchSongBloc, SearchSongState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.navigationDestinationRoute != null) {
-          context.push(state.navigationDestinationRoute!);
+          await context.push(state.navigationDestinationRoute!);
         }
       },
       builder: (context, state) {
         Widget viewWidget;
-        Widget? floatingButton;
 
         switch (state.state) {
           case SearchQueryState.loading:
@@ -51,9 +50,8 @@ class SearchSongScreen extends StatelessWidget {
         }
 
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: themeData.scaffoldBackgroundColor,
           primary: false,
-          floatingActionButton: floatingButton,
           body: Stack(
             children: [
               _ActionButton(
@@ -158,6 +156,7 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
     return _state == SearchQueryState.loading
         ? const SizedBox.shrink()
         : Align(
@@ -171,8 +170,10 @@ class _ActionButton extends StatelessWidget {
               ),
               onPressed: () async {
                 if (onScreenResult != null) {
-                  String urlResponse = await context.push(_navigationDestination.route) as String;
-                  onScreenResult!(urlResponse);
+                  String? urlResponse = await context.push(_navigationDestination.route) as String?;
+                  if (urlResponse != null) {
+                    onScreenResult!(urlResponse);
+                  }
                 } else {
                   context.push(_navigationDestination.route);
                 }
@@ -185,7 +186,7 @@ class _ActionButton extends StatelessWidget {
                     bottom: 16,
                   ),
                   child: Icon(_icon)),
-              color: AppColors.mainColor,
+              color: themeData.primaryColor,
             ),
           );
   }

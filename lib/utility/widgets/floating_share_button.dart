@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/localization/text_keys.dart';
 import 'package:syncrosong/localization/text_manager.dart';
 
@@ -13,11 +12,12 @@ class FloatingShareButton extends StatelessWidget with TextProvider {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
     return FloatingActionButton(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(100),
       ),
-      backgroundColor: AppColors.mainColor,
+      backgroundColor: themeData.primaryColor,
       onPressed: () {
         Share.share(getText(LocalizedText.songShareText, value: _shareUrl));
       },
