@@ -36,25 +36,3 @@ class AppThemeProvider {
         primary: AppColors.mainColor,
       ));
 }
-//
-// class StyleGuide {
-//   TextStyle get regularX => TextStyle(
-//         fontSize: 20,
-//         color: AppColors.mainColor,
-//         fontWeight: FontWeight.bold,
-//       );
-//   TextStyle regular = TextStyle(
-//     fontSize: 20,
-//     color: AppColors.mainColor,
-//     fontWeight: FontWeight.bold,
-//   );
-//
-//   TextStyle get secondary => TextStyle(
-//         color: AppColors._lightGreen,
-//       );
-//
-//   TextStyle get error => TextStyle(
-//         color: AppColors.errorColor,
-//         fontWeight: FontWeight.bold,
-//       );
-// }
