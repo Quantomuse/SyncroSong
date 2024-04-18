@@ -9,12 +9,14 @@ class HistoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData theme = Theme.of(context);
     return Scaffold(
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: BlocBuilder<SongHistoryBloc, SongHistoryState>(builder: (context, state) {
         return ListView.separated(
           itemBuilder: (_, index) => _SongHistoryRowItemWidget(state.songs[index]),
           separatorBuilder: (_, __) => Divider(
-            color: Theme.of(context).primaryColor,
+            color: theme.primaryColor,
             height: 0,
           ),
           addAutomaticKeepAlives: false,

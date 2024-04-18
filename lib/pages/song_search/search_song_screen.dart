@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncrosong/router/router.dart';
-import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 
 import 'search_song_bloc.dart';
@@ -17,17 +16,25 @@ class SearchSongScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return BlocConsumer<SearchSongBloc, SearchSongState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.navigationDestinationRoute != null) {
-          context.push(state.navigationDestinationRoute!);
+          await context.push(state.navigationDestinationRoute!);
+
+          // ignore: use_build_context_synchronously
+          BlocProvider.of<SearchSongBloc>(context).add(ReturnedFromResultScreenEvent());
         }
       },
       builder: (context, state) {
         Widget viewWidget;
-        Widget? floatingButton;
 
         switch (state.state) {
+          case SearchQueryState.resetToInitial:
+            textEditingController.text = "";
+            continue loading;
+
+          loading:
           case SearchQueryState.loading:
             viewWidget = const LoaderWidget();
 
@@ -38,11 +45,6 @@ class SearchSongScreen extends StatelessWidget {
               doesHaveError: true,
             );
 
-          case SearchQueryState.resetToInitial:
-            textEditingController.text = "";
-            continue initial;
-
-          initial:
           case SearchQueryState.initial:
             viewWidget = _SearchSongWidget(
               textEditingController,
@@ -51,9 +53,8 @@ class SearchSongScreen extends StatelessWidget {
         }
 
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: themeData.scaffoldBackgroundColor,
           primary: false,
-          floatingActionButton: floatingButton,
           body: Stack(
             children: [
               _ActionButton(
@@ -146,8 +147,9 @@ class _ActionButton extends StatelessWidget {
   final AppRoute _navigationDestination;
   final SearchQueryState _state;
   final void Function(String)? onScreenResult;
+  final List<SearchQueryState> _listOfStatesToHideButton = [SearchQueryState.loading, SearchQueryState.resetToInitial];
 
-  const _ActionButton(
+  _ActionButton(
     this._icon,
     this._navigationDestination,
     this._alignment,
@@ -158,7 +160,8 @@ class _ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _state == SearchQueryState.loading
+    final ThemeData themeData = Theme.of(context);
+    return _listOfStatesToHideButton.contains(_state)
         ? const SizedBox.shrink()
         : Align(
             alignment: _alignment,
@@ -171,8 +174,10 @@ class _ActionButton extends StatelessWidget {
               ),
               onPressed: () async {
                 if (onScreenResult != null) {
-                  String urlResponse = await context.push(_navigationDestination.route) as String;
-                  onScreenResult!(urlResponse);
+                  String? urlResponse = await context.push(_navigationDestination.route) as String?;
+                  if (urlResponse != null) {
+                    onScreenResult!(urlResponse);
+                  }
                 } else {
                   context.push(_navigationDestination.route);
                 }
@@ -185,7 +190,7 @@ class _ActionButton extends StatelessWidget {
                     bottom: 16,
                   ),
                   child: Icon(_icon)),
-              color: AppColors.mainColor,
+              color: themeData.primaryColor,
             ),
           );
   }

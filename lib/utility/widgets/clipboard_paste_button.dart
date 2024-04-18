@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:syncrosong/styling_guide.dart';
 
 class ClipboardPasteButton extends StatefulWidget {
   final void Function(String clipboardText) onClipboardTextFound;
@@ -23,19 +22,20 @@ class _ClipboardPasteButtonState extends State<ClipboardPasteButton> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData themeData = Theme.of(context);
     if (!_isLoading) {
-      return _getButtonView();
+      return _getButtonView(themeData);
     } else {
       return const SizedBox();
     }
   }
 
-  Widget _getButtonView() => IconButton(
+  Widget _getButtonView(ThemeData themeData) => IconButton(
         iconSize: 25,
         padding: EdgeInsets.zero,
         onPressed: _pasteFromClipboard,
         icon: const Icon(Icons.paste),
-        color: AppColors.mainColor,
+        color: themeData.primaryColor,
       );
 
   void _pasteFromClipboard() async {

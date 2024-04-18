@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:syncrosong/styling_guide.dart';
 
 class LoaderWidget extends StatelessWidget {
   const LoaderWidget({super.key});
 
   @override
-  Widget build(BuildContext context) => const Center(child: CircularProgressIndicator(color: AppColors.mainColor));
+  Widget build(BuildContext context) => Center(
+        child: CircularProgressIndicator(
+          color: Theme.of(context).primaryColor,
+        ),
+      );
 }

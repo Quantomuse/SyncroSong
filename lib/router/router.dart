@@ -25,22 +25,22 @@ class AppRouteTreeHolder {
     _router = GoRouter(
       initialLocation: AppRoute.searchSong.route,
       routes: [
-        GoRoute(
+        _DefaultGoRoute(
           path: AppRoute.searchSong.route,
           builder: (context, state) => SearchSongScreen(),
         ),
-        GoRoute(
+        _DefaultGoRoute(
           path: AppRoute.settings.route,
           builder: (context, state) => const SettingsScreen(),
         ),
-        GoRoute(
+        _DefaultGoRoute(
           path: AppRoute.history.route,
           builder: (context, state) => BlocProvider<SongHistoryBloc>(
             create: (BuildContext context) => SongHistoryBloc(songRepository),
             child: const HistoryScreen(),
           ),
         ),
-        GoRoute(
+        _DefaultGoRoute(
           path: AppRoute.fullMusicLinks.route,
           builder: (context, state) {
             return FullMusicLinksScreen(state.uri.queryParameters[AppNavigationParameterKeys.url]);
@@ -51,6 +51,21 @@ class AppRouteTreeHolder {
   }
 
   GoRouter get() => _router;
+}
+
+class _DefaultGoRoute extends GoRoute {
+  _DefaultGoRoute({
+    required String path,
+    required Widget Function(BuildContext, GoRouterState) builder,
+  }) : super(
+            path: path,
+            pageBuilder: (context, state) => CustomTransitionPage<void>(
+                  child: builder(context, state),
+                  transitionsBuilder: (context, animation, secondaryAnimation, child) => FadeTransition(
+                    opacity: CurveTween(curve: Curves.easeIn).animate(animation),
+                    child: child,
+                  ),
+                ));
 }
 
 class AppNavigationParameterKeys {
