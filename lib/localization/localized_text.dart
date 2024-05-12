@@ -1,8 +1,12 @@
 enum LocalizedText {
   songSearchClipboardNoUrlFound("Your clipboard is empty!"),
   songSearchHintKey("Add a song or artist URL"),
-  songShareText("Check this song out:\n$valuePlaceholder\n\nProvided by ♪ SynncroSong ♪"),
-  songSharedUrlInvalidError("The shared URL is invalid.");
+  songShareText("$valuePlaceholder by ♪ SyncroSong ♪"),
+  songSharedUrlInvalidError("The shared URL is invalid."),
+  settingsSupport("Support us"),
+  settingsSubscribe("Hear more from us"),
+  settingsRate("Rate ♪ SyncroSong ♪"),
+  ;
   
   const LocalizedText(this.englishText);
   

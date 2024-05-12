@@ -31,7 +31,7 @@ class AppRouteTreeHolder {
         ),
         _DefaultGoRoute(
           path: AppRoute.settings.route,
-          builder: (context, state) => const SettingsScreen(),
+          builder: (context, state) => SettingsScreen(),
         ),
         _DefaultGoRoute(
           path: AppRoute.history.route,
