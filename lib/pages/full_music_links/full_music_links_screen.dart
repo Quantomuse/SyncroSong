@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../../utility/widgets/floating_share_button.dart';
 
 class FullMusicLinksScreen extends StatefulWidget {
   final WebViewController webViewController = WebViewController();
@@ -14,7 +17,7 @@ class FullMusicLinksScreen extends StatefulWidget {
   State<FullMusicLinksScreen> createState() => _FullMusicLinksScreenState();
 }
 
-class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
+class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextProvider {
   bool _isLoading = true;
   late ThemeData theme;
 
@@ -55,6 +58,7 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> {
                 ]),
               ),
             ),
+      floatingActionButton: _isLoading ? null : FloatingShareButton(widget.url),
     );
   }
 
