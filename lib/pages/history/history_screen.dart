@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncrosong/data/repos/songs/song_item.dart';
 import 'package:syncrosong/pages/history/history_screen_bloc.dart';
+import 'package:syncrosong/utility/widgets/Separator.dart';
 
 class HistoryScreen extends StatelessWidget {
   const HistoryScreen({super.key});
@@ -15,10 +16,7 @@ class HistoryScreen extends StatelessWidget {
       body: BlocBuilder<SongHistoryBloc, SongHistoryState>(builder: (context, state) {
         return ListView.separated(
           itemBuilder: (_, index) => _SongHistoryRowItemWidget(state.songs[index]),
-          separatorBuilder: (_, __) => Divider(
-            color: theme.primaryColor,
-            height: 0,
-          ),
+          separatorBuilder: (_, __) => const Separator(),
           addAutomaticKeepAlives: false,
           cacheExtent: 50,
           itemCount: state.songs.length,

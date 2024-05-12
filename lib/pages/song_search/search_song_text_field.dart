@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:syncrosong/localization/text_keys.dart';
+import 'package:syncrosong/localization/localized_text.dart';
 import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/utility/widgets/clipboard_paste_button.dart';
 

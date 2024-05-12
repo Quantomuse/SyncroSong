@@ -1,4 +1,4 @@
-import 'package:syncrosong/localization/text_keys.dart';
+import 'package:syncrosong/localization/localized_text.dart';
 
 class TextManager {
   static final TextManager _instance = TextManager._();
