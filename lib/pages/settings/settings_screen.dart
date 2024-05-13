@@ -5,11 +5,10 @@ import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/utility/widgets/Separator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../utility/local_properties_provider.dart';
 import '../../utility/widgets/appbar_provider.dart';
 
-class SettingsScreen extends StatelessWidget with TextProvider, AppBarProvider {
-  final Uri supportUrl = Uri.parse("https://buymeacoffee.com/quantomuse");
-  final Uri signupUrl = Uri.parse("https://www.signupanywhere.com/signup/r88tyhbs");
+class SettingsScreen extends StatelessWidget with TextProvider, AppBarProvider, LocalPropertiesProvider {
 
   SettingsScreen({super.key});
 
