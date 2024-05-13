@@ -6,6 +6,9 @@ enum LocalizedText {
   settingsSupport("Support us"),
   settingsSubscribe("Hear more from us"),
   settingsRate("Rate ♪ SyncroSong ♪"),
+  historyScreenTitle("History"),
+  settingsScreenTitle("Settings"),
+  musicLinkScreenTitle("Settings"),
   ;
   
   const LocalizedText(this.englishText);

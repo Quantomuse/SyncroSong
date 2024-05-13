@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/styling_guide.dart';
 import 'package:syncrosong/utility/widgets/loader_widget.dart';
@@ -47,17 +48,39 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
               decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
               constraints: const BoxConstraints.expand(width: double.infinity, height: double.infinity),
               child: const LoaderWidget())
-          : SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  SizedBox(height: MediaQuery.of(context).viewPadding.top),
-                  Flexible(
-                    child: WebViewWidget(controller: widget.webViewController),
+          : Stack(children: [
+              SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SizedBox(height: MediaQuery.of(context).viewPadding.top),
+                      Flexible(
+                        child: WebViewWidget(controller: widget.webViewController),
+                      ),
+                    ],
                   ),
-                ]),
+                ),
               ),
-            ),
+              Positioned(
+                top: MediaQuery.of(context).padding.top + 16,
+                left: 16,
+                child: Container(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: theme.primaryColor, //Color(0x80079B4C)
+                  ),
+                  child: IconButton(
+                      onPressed: () => context.pop(),
+                      color: theme.scaffoldBackgroundColor,
+                      icon: const Icon(
+                        Icons.close,
+                        size: 25,
+                      )),
+                ),
+              ),
+            ]),
       floatingActionButton: _isLoading ? null : FloatingShareButton(widget.url),
     );
   }
@@ -84,8 +107,7 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
   }
 
   void _onProgress(int progressPercent) {
-    // TODO: Add a loader to the add view here
-    print("Loading web page: $progressPercent");
+    // Left for options
   }
 
   NavigationDecision _onNavigationRequest(NavigationRequest navigationRequest) {

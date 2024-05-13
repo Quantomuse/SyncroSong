@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   static const Color _white = Color(0xFFFFFFFF);
-  static const Color _black = Color(0xFF191919);
+  static const Color _darkBlack = Color(0xFF191919);
+  static const Color _black = Color(0xFF000000);
   static const Color _lightDark = Color(0xFFbcbcbc);
   static const Color _green = Color(0xFF079B4C);
   static const Color _lightGreen = Color(0xFF51B57F);
@@ -29,6 +30,14 @@ class AppThemeProvider {
         ),
       ),
       scaffoldBackgroundColor: AppColors._white,
+      appBarTheme: const AppBarTheme(
+        color: AppColors._green,
+        foregroundColor: AppColors._white,
+        titleTextStyle: TextStyle(
+          fontSize: 20,
+          color: AppColors._white,
+        ),
+      ),
       colorScheme: const ColorScheme.light(
         error: AppColors._red,
         primary: AppColors._green,
@@ -51,7 +60,15 @@ class AppThemeProvider {
           color: AppColors._lightGreen,
         ),
       ),
-      scaffoldBackgroundColor: AppColors._black,
+      scaffoldBackgroundColor: AppColors._darkBlack,
+      appBarTheme: const AppBarTheme(
+        color: AppColors._green,
+        foregroundColor: AppColors._black,
+        titleTextStyle: TextStyle(
+          fontSize: 20,
+          color: AppColors._black,
+        ),
+      ),
       colorScheme: const ColorScheme.light(
         error: AppColors._red,
         primary: AppColors._green,

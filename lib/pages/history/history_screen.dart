@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:syncrosong/data/repos/songs/song_item.dart';
+import 'package:syncrosong/localization/localized_text.dart';
+import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/pages/history/history_screen_bloc.dart';
 import 'package:syncrosong/utility/widgets/Separator.dart';
 
-class HistoryScreen extends StatelessWidget {
+import '../../utility/widgets/appbar_provider.dart';
+
+class HistoryScreen extends StatelessWidget with TextProvider {
   const HistoryScreen({super.key});
 
   @override
@@ -13,6 +17,7 @@ class HistoryScreen extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
+      appBar: AppBarProvider.get(getText(LocalizedText.historyScreenTitle), context),
       body: BlocBuilder<SongHistoryBloc, SongHistoryState>(builder: (context, state) {
         return ListView.separated(
           itemBuilder: (_, index) => _SongHistoryRowItemWidget(state.songs[index]),
