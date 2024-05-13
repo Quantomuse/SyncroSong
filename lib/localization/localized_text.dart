@@ -1,10 +1,10 @@
 enum LocalizedText {
   songSearchClipboardNoUrlFound("Your clipboard is empty!"),
-  songSearchHintKey("Add a song or artist URL"),
+  songSearchHintKey("Share a song url :)"),
   songShareText("$valuePlaceholder by ♪ SyncroSong ♪"),
   songSharedUrlInvalidError("The shared URL is invalid."),
   settingsSupport("Support us"),
-  settingsSubscribe("Hear more from us"),
+  settingsSubscribe("Learn More"),
   settingsRate("Rate ♪ SyncroSong ♪"),
   historyScreenTitle("History"),
   settingsScreenTitle("Settings"),
