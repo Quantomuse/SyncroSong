@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../../styling_guide.dart';
 
-class AppBarProvider {
-  static AppBar get(String text, BuildContext buildContext) {
+mixin AppBarProvider {
+  AppBar createAppBar(String text, BuildContext buildContext) {
     ThemeData theme = Theme.of(buildContext);
     return AppBar(
       systemOverlayStyle: const SystemUiOverlayStyle(

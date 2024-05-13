@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../utility/widgets/appbar_provider.dart';
 
-class SettingsScreen extends StatelessWidget with TextProvider {
+class SettingsScreen extends StatelessWidget with TextProvider, AppBarProvider {
   final Uri supportUrl = Uri.parse("https://buymeacoffee.com/quantomuse");
   final Uri signupUrl = Uri.parse("https://www.signupanywhere.com/signup/r88tyhbs");
 
@@ -16,7 +16,7 @@ class SettingsScreen extends StatelessWidget with TextProvider {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarProvider.get(getText(LocalizedText.settingsScreenTitle), context),
+      appBar: createAppBar(getText(LocalizedText.settingsScreenTitle), context),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -9,7 +9,7 @@ import 'package:syncrosong/utility/widgets/Separator.dart';
 
 import '../../utility/widgets/appbar_provider.dart';
 
-class HistoryScreen extends StatelessWidget with TextProvider {
+class HistoryScreen extends StatelessWidget with TextProvider, AppBarProvider {
   const HistoryScreen({super.key});
 
   @override
@@ -17,7 +17,7 @@ class HistoryScreen extends StatelessWidget with TextProvider {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      appBar: AppBarProvider.get(getText(LocalizedText.historyScreenTitle), context),
+      appBar: createAppBar(getText(LocalizedText.historyScreenTitle), context),
       body: BlocBuilder<SongHistoryBloc, SongHistoryState>(builder: (context, state) {
         return ListView.separated(
           itemBuilder: (_, index) => _SongHistoryRowItemWidget(state.songs[index]),
