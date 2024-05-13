@@ -5,7 +5,9 @@ import 'package:syncrosong/localization/text_manager.dart';
 import 'package:syncrosong/utility/widgets/Separator.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SettingsScreen extends StatelessWidget with TextProvider {
+import '../../utility/widgets/appbar_provider.dart';
+
+class SettingsScreen extends StatelessWidget with TextProvider, AppBarProvider {
   final Uri supportUrl = Uri.parse("https://buymeacoffee.com/quantomuse");
   final Uri signupUrl = Uri.parse("https://www.signupanywhere.com/signup/r88tyhbs");
 
@@ -14,10 +16,10 @@ class SettingsScreen extends StatelessWidget with TextProvider {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: createAppBar(getText(LocalizedText.settingsScreenTitle), context),
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(height: MediaQuery.of(context).viewPadding.top),
           _SimpleSettingsRow(
             getText(LocalizedText.settingsSupport),
             () => launchUrl(supportUrl),

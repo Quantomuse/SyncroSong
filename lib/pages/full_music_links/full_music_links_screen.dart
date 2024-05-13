@@ -5,6 +5,7 @@ import 'package:syncrosong/utility/widgets/loader_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
+import '../../utility/widgets/close_button.dart';
 import '../../utility/widgets/floating_share_button.dart';
 
 class FullMusicLinksScreen extends StatefulWidget {
@@ -47,16 +48,28 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
               decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
               constraints: const BoxConstraints.expand(width: double.infinity, height: double.infinity),
               child: const LoaderWidget())
-          : SingleChildScrollView(
-              child: ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  SizedBox(height: MediaQuery.of(context).viewPadding.top),
-                  Flexible(
-                    child: WebViewWidget(controller: widget.webViewController),
+          : Stack(
+              children: [
+                SingleChildScrollView(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).viewPadding.top),
+                        Flexible(
+                          child: WebViewWidget(controller: widget.webViewController),
+                        ),
+                      ],
+                    ),
                   ),
-                ]),
-              ),
+                ),
+                Positioned(
+                  top: MediaQuery.of(context).padding.top + 16,
+                  left: 16,
+                  child: const CustomCloseButton(),
+                ),
+              ],
             ),
       floatingActionButton: _isLoading ? null : FloatingShareButton(widget.url),
     );
@@ -84,8 +97,7 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
   }
 
   void _onProgress(int progressPercent) {
-    // TODO: Add a loader to the add view here
-    print("Loading web page: $progressPercent");
+    // Left for options
   }
 
   NavigationDecision _onNavigationRequest(NavigationRequest navigationRequest) {
