@@ -8,7 +8,6 @@ enum LocalizedText {
   settingsRate("Rate ♪ SyncroSong ♪"),
   historyScreenTitle("History"),
   settingsScreenTitle("Settings"),
-  musicLinkScreenTitle("Settings"),
   ;
   
   const LocalizedText(this.englishText);
