@@ -27,7 +27,7 @@ class AppRouteTreeHolder {
       routes: [
         _DefaultGoRoute(
           path: AppRoute.searchSong.route,
-          builder: (context, state) => SearchSongScreen(),
+          builder: (context, state) => const SearchSongScreen(),
         ),
         _DefaultGoRoute(
           path: AppRoute.settings.route,
