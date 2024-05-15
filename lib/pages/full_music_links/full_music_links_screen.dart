@@ -43,14 +43,14 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
     theme = Theme.of(context);
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
-      body: _isLoading
-          ? Container(
-              decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
-              constraints: const BoxConstraints.expand(width: double.infinity, height: double.infinity),
-              child: const LoaderWidget())
-          : Stack(
-              children: [
-                SingleChildScrollView(
+      body: Stack(
+        children: [
+          _isLoading
+              ? Container(
+                  decoration: BoxDecoration(color: theme.scaffoldBackgroundColor),
+                  constraints: const BoxConstraints.expand(width: double.infinity, height: double.infinity),
+                  child: const LoaderWidget())
+              : SingleChildScrollView(
                   child: ConstrainedBox(
                     constraints: BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
                     child: Column(
@@ -64,13 +64,13 @@ class _FullMusicLinksScreenState extends State<FullMusicLinksScreen> with TextPr
                     ),
                   ),
                 ),
-                Positioned(
-                  top: MediaQuery.of(context).padding.top + 16,
-                  left: 16,
-                  child: const CustomCloseButton(),
-                ),
-              ],
-            ),
+          Positioned(
+            top: MediaQuery.of(context).padding.top + 16,
+            left: 16,
+            child: const CustomCloseButton(),
+          ),
+        ],
+      ),
       floatingActionButton: _isLoading ? null : FloatingShareButton(widget.url),
     );
   }

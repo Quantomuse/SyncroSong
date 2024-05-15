@@ -1,5 +1,3 @@
-// ignore_for_file: unused_element
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -9,10 +7,27 @@ import 'package:syncrosong/utility/widgets/loader_widget.dart';
 import 'search_song_bloc.dart';
 import 'search_song_text_field.dart';
 
-class SearchSongScreen extends StatelessWidget {
+class SearchSongScreen extends StatefulWidget {
+  const SearchSongScreen({super.key});
+
+  @override
+  State<SearchSongScreen> createState() => _SearchSongScreenState();
+}
+
+class _SearchSongScreenState extends State<SearchSongScreen> with WidgetsBindingObserver {
   final TextEditingController textEditingController = TextEditingController();
 
-  SearchSongScreen({super.key});
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +35,12 @@ class SearchSongScreen extends StatelessWidget {
     return BlocConsumer<SearchSongBloc, SearchSongState>(
       listener: (context, state) async {
         if (state.navigationDestinationRoute != null) {
+          //
+          // This is required to prevent the viewer seeing the initial state loading before the
+          // music link screen loads, which looks buggy because it's sort of a blink.
           await context.push(state.navigationDestinationRoute!);
 
+          // Assuming that once the screen is released, this screen will always be alive.
           // ignore: use_build_context_synchronously
           BlocProvider.of<SearchSongBloc>(context).add(ReturnedFromResultScreenEvent());
         }
@@ -82,6 +101,20 @@ class SearchSongScreen extends StatelessWidget {
   void _onSearchSubmitted(BuildContext context) {
     BlocProvider.of<SearchSongBloc>(context).add(SongSubmitEvent(textEditingController.text));
     textEditingController.text = "";
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    //
+    // This is required because we await for the music link screen to exit so we can return to the initial state.
+    if (state == AppLifecycleState.resumed) {
+      final SearchSongBloc bloc = BlocProvider.of<SearchSongBloc>(context);
+      if (bloc.state.state == SearchQueryState.resetToInitial) {
+        bloc.add(ReturnedFromResultScreenEvent());
+      }
+    }
   }
 }
 
