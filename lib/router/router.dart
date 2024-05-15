@@ -1,11 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:syncrosong/data/repos/songs/songs_repository.dart';
 import 'package:syncrosong/pages/full_music_links/full_music_links_screen.dart';
 import 'package:syncrosong/pages/history/history_screen.dart';
 import 'package:syncrosong/pages/settings/settings_screen.dart';
+import 'package:syncrosong/pages/song_search/search_song_bloc.dart';
 
+import '../di/dependency_locator.dart';
 import '../pages/history/history_screen_bloc.dart';
 import '../pages/song_search/search_song_screen.dart';
 
@@ -21,13 +22,16 @@ enum AppRoute {
 class AppRouteTreeHolder {
   late GoRouter _router;
 
-  AppRouteTreeHolder(SongRepository songRepository) {
+  AppRouteTreeHolder(DependencyHandler dependencyLocator) {
     _router = GoRouter(
       initialLocation: AppRoute.searchSong.route,
       routes: [
         _DefaultGoRoute(
           path: AppRoute.searchSong.route,
-          builder: (context, state) => const SearchSongScreen(),
+          builder: (context, state) => BlocProvider<SearchSongBloc>(
+            create: (BuildContext context) => dependencyLocator.get(),
+            child: const SearchSongScreen(),
+          ),
         ),
         _DefaultGoRoute(
           path: AppRoute.settings.route,
@@ -36,7 +40,7 @@ class AppRouteTreeHolder {
         _DefaultGoRoute(
           path: AppRoute.history.route,
           builder: (context, state) => BlocProvider<SongHistoryBloc>(
-            create: (BuildContext context) => SongHistoryBloc(songRepository),
+            create: (BuildContext context) => dependencyLocator.get(),
             child: const HistoryScreen(),
           ),
         ),

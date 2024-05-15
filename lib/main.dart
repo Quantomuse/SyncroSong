@@ -1,45 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:syncrosong/data/api/api.dart';
-import 'package:syncrosong/data/database/database.dart';
-import 'package:syncrosong/data/repos/songs/songs_repository.dart';
+import 'package:syncrosong/di/dependency_locator.dart';
 import 'package:syncrosong/router/router.dart';
 import 'package:syncrosong/styling_guide.dart';
 
-import 'data/database/songs/song_search_db.dart';
-import 'pages/song_search/search_song_bloc.dart';
 import 'utility/logger.dart';
 
 void main() async {
   await dotenv.load(fileName: "local_properties.env");
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: AppColors.statusBarColor,
   ));
 
   LogManager.initialize();
-  final Database database = await Database.create();
-  final SongRepository songRepository = SongRepository(
-    SongSearchDatabase(database),
-    SongSearchApi(),
-  );
+
+  DependencyHandler dependencyHandler = DependencyHandler();
+  await dependencyHandler.setupDependencies();
+
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider<SearchSongBloc>(create: (BuildContext context) => SearchSongBloc(songRepository)),
-      ],
-      child: Builder(
-        builder: (BuildContext buildContext) {
-          bool isDarkMode = buildContext.isDarkMode;
-          return MaterialApp.router(
-            theme: isDarkMode ? AppThemeProvider.createDarkTheme() : AppThemeProvider.createLightTheme(),
-            debugShowCheckedModeBanner: false,
-            routerConfig: AppRouteTreeHolder(songRepository).get(),
-          );
-        },
-      ),
+    Builder(
+      builder: (BuildContext buildContext) {
+        bool isDarkMode = buildContext.isDarkMode;
+        return MaterialApp.router(
+          theme: isDarkMode ? AppThemeProvider.createDarkTheme() : AppThemeProvider.createLightTheme(),
+          debugShowCheckedModeBanner: false,
+          routerConfig: AppRouteTreeHolder(dependencyHandler).get(),
+        );
+      },
     ),
   );
 }
