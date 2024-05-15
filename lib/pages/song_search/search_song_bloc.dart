@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncrosong/data/repos/songs/song_item.dart';
 import 'package:syncrosong/data/repos/songs/songs_repository.dart';
 import 'package:syncrosong/router/router.dart';
+import 'package:syncrosong/utility/logger.dart';
 
 enum SearchQueryState { loading, resetToInitial, initial, error }
 
@@ -38,12 +39,15 @@ class SearchSongBloc extends Bloc<_SearchSongEvent, SearchSongState> {
       emit(SearchSongState.loading());
       String? pageUrl;
       try {
+        logger.info("Song submitted: ${event.url}");
         SongItem songItem = await _songRepository.search(event.url);
         pageUrl = songItem.displayUrl;
       } catch (exception) {
+        logger.warning("Couldn't find results for ${event.url}");
         emit(SearchSongState.error());
       }
       if (pageUrl != null) {
+        logger.warning("Found web share url: ${AppNavigationParameterKeys.url}");
         Uri navigationPath = Uri(
           path: AppRoute.fullMusicLinks.route,
           queryParameters: {AppNavigationParameterKeys.url: pageUrl},
